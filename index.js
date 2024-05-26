@@ -32,6 +32,16 @@ async function run() {
       .db("Stride_task")
       .collection("all-product");
 
+    app.get("/get-all-product", async (req, res) => {
+      // let query = {};
+      // if (req.query?.email) {
+      //   query = { email: req.query.email };
+      // }
+      const cursor = productsCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     // Upload products data
     app.post("/all-product", async (req, res) => {
       const addProductData = req.body;
